@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Warranty Deed Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for printing */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            html, body {
+                background-color: white !important; /* Ensure white background */
+                margin: 0;
+                padding: 0;
+            }
+            .print-area {
+                width: 100%;
+                margin: 0;
+                padding: 0.5in; /* Add some print margins */
+                box-shadow: none !important; /* Remove shadows for printing */
+                border-radius: 0 !important; /* Remove rounded corners for printing */
+            }
+            /* Ensure text is black for printing */
+            .text-gray-800, .text-gray-700, .text-gray-600 {
+                color: black !important;
+            }
+            /* Ensure borders are visible and black */
+            .border-2, .border {
+                border-color: black !important;
+            }
+            /* Ensure page breaks for Notary Acknowledgment */
+            .page-break-before {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100 p-4 font-sans flex flex-col items-center">
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center no-print">General Warranty Deed Generator</h1>
+
+    <form id="deedForm" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl mb-8 no-print">
+        <h2 class="text-2xl font-semibold text-gray-700 mb-6">Enter Deed Details</h2>
+
+        <div class="mb-4">
+            <label for="trustName" class="block text-gray-700 text-sm font-bold mb-2">Name of the Trust:</label>
+            <input type="text" id="trustName" name="trustName" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="e.g., My Family Revocable Living Trust">
+        </div>
+
+        <div class="mb-4">
+            <label for="grantor1Name" class="block text-gray-700 text-sm font-bold mb-2">Grantor(s) Full Name(s) (Property Owners):</label>
+            <input type="text" id="grantor1Name" name="grantor1Name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Property Owner 1 Full Name">
+            <input type="text" id="grantor2Name" name="grantor2Name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Property Owner 2 Full Name (Optional)">
+        </div>
+
+        <div class="mb-4">
+            <label for="deedState" class="block text-gray-700 text-sm font-bold mb-2">State (Deed Location):</label>
+            <input type="text" id="deedState" name="deedState" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="State where deed is executed">
+        </div>
+
+        <div class="mb-4">
+            <label for="deedCounty" class="block text-gray-700 text-sm font-bold mb-2">County (Deed Location):</label>
+            <input type="text" id="deedCounty" name="deedCounty" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="County where deed is executed">
+        </div>
+
+        <div class="mb-4">
+            <label for="grantorsStreet" class="block text-gray-700 text-sm font-bold mb-2">Property Owners Current Address:</label>
+            <input type="text" id="grantorsStreet" name="grantorsStreet" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Street Address">
+            <div class="flex space-x-2 mb-2">
+                <input type="text" id="grantorsCity" name="grantorsCity" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="City">
+                <input type="text" id="grantorsState" name="grantorsState" class="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="State">
+                <input type="text" id="grantorsZip" name="grantorsZip" class="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Zip Code">
+            </div>
+            <input type="text" id="grantorsCountry" name="grantorsCountry" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Country">
+        </div>
+
+        <div class="mb-4">
+            <label for="propertyStreet" class="block text-gray-700 text-sm font-bold mb-2">Address of the Property:</label>
+            <input type="text" id="propertyStreet" name="propertyStreet" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-2" placeholder="Street Address">
+            <div class="flex space-x-2 mb-2">
+                <input type="text" id="propertyCity" name="propertyCity" class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="City">
+                <input type="text" id="propertyState" name="propertyState" class="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="State">
+                <input type="text" id="propertyZip" name="propertyZip" class="shadow appearance-none border rounded w-1/4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Zip Code">
+            </div>
+            <input type="text" id="propertyCountry" name="propertyCountry" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Country">
+        </div>
+
+        <div class="mb-6">
+            <label for="legalDescription" class="block text-gray-700 text-sm font-bold mb-2">Legal Description of the Property:</label>
+            <textarea id="legalDescription" name="legalDescription" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-24" placeholder="Enter the full legal description here"></textarea>
+        </div>
+
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline w-full">
+            Generate Deed Document
+        </button>
+    </form>
+
+    <div id="documentOutput" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl print-area" style="display: none;">
+        <!-- Content will be injected here by JavaScript -->
+    </div>
+
+    <script>
+        document.getElementById('deedForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const form = event.target;
+            const formData = {
+                trustName: form.trustName.value || 'My Family Revocable Living Trust',
+                grantor1Name: form.grantor1Name.value,
+                grantor2Name: form.grantor2Name.value,
+                deedState: form.deedState.value,
+                deedCounty: form.deedCounty.value,
+                grantorsStreet: form.grantorsStreet.value,
+                grantorsCity: form.grantorsCity.value,
+                grantorsState: form.grantorsState.value,
+                grantorsZip: form.grantorsZip.value,
+                grantorsCountry: form.grantorsCountry.value,
+                propertyStreet: form.propertyStreet.value,
+                propertyCity: form.propertyCity.value,
+                propertyState: form.propertyState.value,
+                propertyZip: form.propertyZip.value,
+                propertyCountry: form.propertyCountry.value,
+                legalDescription: form.legalDescription.value,
+            };
+
+            const currentDate = new Date();
+            const currentDay = currentDate.getDate();
+            const currentMonth = currentDate.toLocaleString('default', { month: 'long' });
+            const currentYear = currentDate.getFullYear();
+
+            // Helper function to capitalize the first letter of each word
+            const toCamelCase = (str) => {
+                if (!str) return '';
+                return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
+            };
+
+            const documentOutput = document.getElementById('documentOutput');
+            documentOutput.style.display = 'block'; // Show the document output
+
+            // Construct the HTML content to inject
+            const generatedHtmlContent = `
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold uppercase mb-2 underline">General Warranty Deed</h2>
+                    <p class="text-xs text-gray-600 border-2 border-black p-2 rounded mb-4 text-left">
+                        <span class="font-bold underline">NOTICE OF CONFIDENTIALITY RIGHTS:</span> If you are a natural person, you may remove or strike any of the following information
+                        from this instrument before it is filed for record in the public records: Your social security number or your driver's license number
+                    </p>
+                </div>
+
+                <div class="mb-4 text-sm">
+                    <p class="mb-2"><span class="font-bold">STATE OF</span> <span class="font-bold">${toCamelCase(formData.deedState)}</span></p>
+                    <p><span class="font-bold">COUNTY OF</span> <span class="font-bold">${toCamelCase(formData.deedCounty)}</span></p>
+                </div>
+
+                <div class="text-sm leading-relaxed mb-6">
+                    <p class="mb-2">
+                        <span class="font-bold">This General Warranty Deed</span> is made on this <span class="font-bold">${currentDay}</span> day of <span class="font-bold">${currentMonth}</span>, <span class="font-bold">${currentYear}</span>, by <span class="font-bold">${formData.grantor1Name}${formData.grantor2Name ? `, ${formData.grantor2Name}` : ''}</span> ("Grantors"), whose address is <span class="font-bold">${formData.grantorsStreet}, ${formData.grantorsCity} ${formData.grantorsState} ${formData.grantorsZip}</span>, to <span class="font-bold">Grantee</span>, as Trustee of the <span class="font-bold">${formData.trustName}</span> ("Grantees").
+                    </p>
+                    <p class="mb-2">
+                        For valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the
+                        <span class="font-bold">Grantor(s)</span> hereby grants, conveys, and warrants to <span class="font-bold">Grantee</span>, as Trustee of the <span class="font-bold">${formData.trustName}</span>, all the rights, title, and interest in and to the real property.
+                    </p>
+                    <p class="mb-2">
+                        This property is conveyed to the Grantee as part of a revocable living trust for estate planning,
+                        to be managed per the trust's terms. The Grantor warrants ownership, authority to convey, and
+                        a title free of encumbrances except as noted, and agrees to defend it against lawful claims. This
+                        transfer is subject to existing easements, rights-of-way, covenants, and recorded restrictions.
+                    </p>
+                </div>
+
+                <div class="mb-6">
+                    <table class="w-full border-collapse border-2 border-black">
+                        <thead>
+                            <tr>
+                                <th class="border-2 border-black p-2 text-left text-xs">Property Address</th>
+                                <th class="border-2 border-black p-2 text-left text-xs">Property Legal Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="border-2 border-black p-2 text-sm font-bold">
+                                    ${formData.propertyStreet}<br/>
+                                    ${formData.propertyCity}, ${formData.propertyState} ${formData.propertyZip} ${formData.propertyCountry}
+                                </td>
+                                <td class="border-2 border-black p-2 text-sm font-bold">
+                                    ${formData.legalDescription}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="text-sm leading-relaxed mb-8">
+                    <p>
+                        <span class="font-bold">IN WITNESS WHEREOF</span>, the Grantor(s) has executed this General Warranty Deed as of the
+                        date first written above.
+                    </p>
+                </div>
+
+                <div class="mb-12">
+                    <table class="w-full border-collapse border-2 border-black">
+                        <thead>
+                            <tr>
+                                <th class="border-2 border-black p-2 text-left text-xs">Grantors Printed Name</th>
+                                <th class="border-2 border-black p-2 text-left text-xs">Grantor Signature</th>
+                                <th class="border-2 border-black p-2 text-left text-xs">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="border-2 border-black p-2 text-sm">${formData.grantor1Name}</td><td class="border-2 border-black p-2 text-sm h-10"></td><td class="border-2 border-black p-2 text-sm"></td></tr>
+                            ${formData.grantor2Name ? `<tr><td class="border-2 border-black p-2 text-sm">${formData.grantor2Name}</td><td class="border-2 border-black p-2 text-sm h-10"></td><td class="border-2 border-black p-2 text-sm"></td></tr>` : ''}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pt-8 page-break-before">
+                    <h3 class="text-lg font-bold uppercase mb-4 text-center">NOTARY ACKNOWLEDGMENT</h3>
+                    <p class="text-xs text-gray-600 border-2 border-black p-2 rounded mb-4 font-bold">
+                        NOTE: A notary public or other officer completing this certificate verifies only the identity of the individual
+                        who signed the document to which this certificate is attached, and not the truthfulness, accuracy, or
+                        validity of that document.
+                    </p>
+
+                    <div class="mb-4 text-sm">
+                        <p class="mb-2"><span class="font-bold">STATE OF</span> <span class="font-bold">${toCamelCase(formData.deedState)}</span></p>
+                        <p><span class="font-bold">COUNTY OF</span> <span class="font-bold">${toCamelCase(formData.deedCounty)}</span></p>
+                    </div>
+
+                    <div class="text-sm leading-relaxed mb-6">
+                        <p>
+                            On the <span class="font-bold">${currentDay}</span> day of <span class="font-bold">${currentMonth}</span>, <span class="font-bold">${currentYear}</span> before me, the undersigned notary public, personally
+                            appeared <span class="font-bold">${formData.grantor1Name}${formData.grantor2Name ? `, ${formData.grantor2Name}` : ''}</span> ("Grantors") who proved to me
+                            through satisfactory identification, to be the person(s) whose name(s) is/are signed
+                            above who personally executed such document in my presence, acknowledged to me
+                            that he/she/they signed it voluntarily for its stated purpose and sworn or affirmed to me
+                            that all statements made herein are true, accurate and complete.
+                        </p>
+                    </div>
+
+                    <div class="text-sm leading-relaxed mb-4">
+                        <p class="mb-2">WITNESS my hand and official seal.</p>
+                        <br/><br/>
+                        <div class="flex items-baseline mb-2">
+                            <span class="inline-block w-48 font-bold">Notary Public Signature:</span>
+                            <span class="inline-block border-b border-gray-400 w-1/2"></span>
+                        </div>
+                        <div class="flex items-baseline mb-2">
+                            <span class="inline-block w-48 font-bold">Printed Name:</span>
+                            <span class="inline-block border-b border-gray-400 w-1/2"></span>
+                        </div>
+                        <div class="flex items-baseline mb-2">
+                            <span class="inline-block w-48 font-bold">My Commission Expires:</span>
+                            <span class="inline-block border-b border-gray-400 w-1/2"></span>
+                            <span class="ml-2">(Seal)</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Append the generated content to the documentOutput div
+            documentOutput.innerHTML = generatedHtmlContent;
+
+            // Add the print button AFTER the content has been injected
+            const printButtonDiv = document.createElement('div');
+            printButtonDiv.className = 'mt-8 text-center no-print';
+            printButtonDiv.innerHTML = `
+                <button onclick="window.print()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">
+                    Print to PDF
+                </button>
+            `;
+            documentOutput.appendChild(printButtonDiv);
+
+
+            // Scroll to the generated document
+            documentOutput.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
