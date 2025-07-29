@@ -36,6 +36,9 @@
             .page-break-before {
                 page-break-before: always;
             }
+            .page-break-after {
+                page-break-after: always;
+            }
         }
     </style>
 </head>
@@ -141,8 +144,23 @@
             const documentOutput = document.getElementById('documentOutput');
             documentOutput.style.display = 'block'; // Show the document output
 
-            // Construct the HTML content to inject
-            const generatedHtmlContent = `
+            // Construct the Cover Page HTML
+            const coverPageHtml = `
+                <div class="p-8 print-area page-break-after">
+                    <h2 class="text-2xl font-bold mb-6 text-center">After Recording Return To:</h2>
+                    <div class="text-lg leading-relaxed mb-4">
+                        <p class="mb-2"><span class="font-bold">Name:</span> ${formData.grantor1Name}</p>
+                        <p class="mb-2"><span class="font-bold">Address:</span> ${formData.grantorsStreet}</p>
+                        <p class="mb-2"><span class="font-bold">City:</span> ${formData.grantorsCity}</p>
+                        <p class="mb-2"><span class="font-bold">State:</span> ${formData.grantorsState}</p>
+                        <p class="mb-2"><span class="font-bold">Zipcode:</span> ${formData.grantorsZip}</p>
+                    </div>
+                </div>
+            `;
+
+
+            // Construct the main Deed HTML content
+            const mainDeedHtml = `
                 <div class="text-center mb-8">
                     <h2 class="text-2xl font-bold uppercase mb-2 underline">General Warranty Deed</h2>
                     <p class="text-xs text-gray-600 border-2 border-black p-2 rounded mb-4 text-left">
@@ -261,8 +279,8 @@
                 </div>
             `;
 
-            // Append the generated content to the documentOutput div
-            documentOutput.innerHTML = generatedHtmlContent;
+            // Combine cover page and main deed content
+            documentOutput.innerHTML = coverPageHtml + mainDeedHtml;
 
             // Add the print button AFTER the content has been injected
             const printButtonDiv = document.createElement('div');
